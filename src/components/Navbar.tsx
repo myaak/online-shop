@@ -1,26 +1,10 @@
 import { useState } from 'react'
-import Button from '@mui/material/Button'
-import { styled } from '@mui/material/styles'
-import ymaps from 'yandex-maps'
-
-
-const StyledButton = styled(Button)({
-  "&": {
-    //background: 'linear-gradient(#ffb95a,#ff7818);',
-    backgroundColor: '#3084d7',
-    color: '#FFFFFF',
-    textTransofrm: 'none',
-    height: '36px',
-    width: '94px',
-  }
-})
 
 const Navbar = () => {
 
   const [searchValue, setSearchValue] = useState<string>()
 
 
-  // merge button and searchbar div into one
   return (
     <div className="navbar">
       <div className="navbar__wrapper">
