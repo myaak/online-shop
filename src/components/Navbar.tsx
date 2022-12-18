@@ -1,29 +1,59 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
+import { ToggleTheme } from './'
+import {Box, Button, useColorModeValue} from '@chakra-ui/react'
 
 const Navbar = () => {
 
   const [searchValue, setSearchValue] = useState<string>()
 
 
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault()
+    alert(searchValue)
+  }
+
   return (
-    <div className="navbar">
+    <Box className="navbar" bg={useColorModeValue("brand.500","secondary.100")}>
       <div className="navbar__wrapper">
         <div className="navbar__logo">
         </div>
-        <div className="navbar__searchbar">
+        <div className="navbar__searchbar"
+         style={{
+          backgroundColor: useColorModeValue("#fff", "#202124")
+        }}
+        >
+        <form 
+          style={{
+            width: '100%',
+            display:'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
           <div className="navbar__searchbar__section">
             <input type="text" value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search"
+              style={{
+                backgroundColor: useColorModeValue("#fff", "#202124")
+              }}
             />
           </div>
           <div className="navbar__search_button">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65">
-              </line>
-            </svg>
+              <Button 
+                type="submit"
+                style={{
+                  backgroundColor: useColorModeValue("#fff", "#202124")
+                }}
+                onClick={handleSearch}
+              >
+                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1">
+                   <circle cx="11" cy="11" r="8"></circle>
+                   <line x1="21" y1="21" x2="16.65" y2="16.65">
+                   </line>
+                 </svg>
+              </Button>
           </div>
+        </form>
         </div>
         <div className="navbar__utils">
           <div className="navbar__utils__location">
@@ -39,9 +69,10 @@ const Navbar = () => {
             </svg>
             LOGIN
           </div>
+          <ToggleTheme />
         </div>
       </div>
-    </div>
+    </Box>
   )
 }
 
